@@ -129,3 +129,48 @@ git config --global --unset http.proxy
 git pull --rebase origin master
 ```
 
+
+
+## 4、git的进阶使用  
+
+### 4.1 gitignore的使用  
+
+1、为什么需要gitignore功能？
+
+​    很多时候的工程中存在一些中间文件，在上传github时不需要上传，在不删除这些文件的情况下，如何做到一次性上传所有文件，那么，就需要.gitignore文件来起作用了。
+
+2、gitignore的作用？
+
+   创建.gitignore文件，并编辑进相应的文件名或正则的通配符表达式等后，在上传文件时，便可以忽略这些文件，当然该.gitignore文件需要上传。
+
+3、使用方法：
+
+​	（1）在本地仓库中创建.gitignore文件；
+
+​	（2）编辑改文件，写入要忽略文件名。比如，要忽略a.txt和所用的.o文件，则.gitignore文件编辑如下：
+
+```shell
+a.txt
+*.o
+```
+
+​	（3）上传该文件，并push至github上；
+
+​	（4）查看被忽略目标忽略的规则：
+
+```shell
+git check-ignore -v <file name>
+```
+
+​	（5）强制添加被忽略掉得文件
+
+```shell
+git add -f <file name>
+```
+
+​	（6）将上传到暂存区的文件回退到临时区：
+
+```shell
+git reset HEAD
+```
+
