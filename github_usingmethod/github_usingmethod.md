@@ -174,3 +174,56 @@ git add -f <file name>
 git reset HEAD
 ```
 
+4、换行符使用
+
+CR: carriage return 回车，光标到首行，‘\r’ = return
+
+LR: line feed 换行，光标下移一行，'\n' = newline
+
+linux中：换行为\n
+
+windows中：换行为\r\n
+
+mac os中：换行为\r
+
+#提交时转换为LR，检出时转化为CRLF，默认设置不用修改，Git是linux配置
+
+#允许提交包含混合换行符合的条件：
+
+```shell
+git config --global core.safecrlf false
+```
+
+5、命令别名的设置
+
+设置方法1：直接命令设置如下：
+
+```shell
+git config --global alias.ci commit    #将commit的别名设置为ci
+```
+
+设置方法2：编辑配置文件如下：
+
+- vi ~/.gitconfig
+
+- 添加如下：
+
+  ```shell
+  [alias]
+          ci = commit
+          ad = add .
+          br = branch
+          hi = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+          st = status
+  ```
+
+6、凭证的设置
+
+在push时有时会存在要求输入账号和密码，为了解决这个问题，需要存储凭证。
+
+#存储凭证
+
+```shell
+git config --global credential.helper wincred
+```
+
