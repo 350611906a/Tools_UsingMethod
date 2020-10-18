@@ -174,7 +174,7 @@ git add -f <file name>
 git reset HEAD
 ```
 
-4、换行符使用
+### 4.2 换行符使用
 
 CR: carriage return 回车，光标到首行，‘\r’ = return
 
@@ -194,7 +194,7 @@ mac os中：换行为\r
 git config --global core.safecrlf false
 ```
 
-5、命令别名的设置
+### 4.3 命令别名的设置
 
 设置方法1：直接命令设置如下：
 
@@ -217,7 +217,7 @@ git config --global alias.ci commit    #将commit的别名设置为ci
           st = status
   ```
 
-6、凭证的设置
+### 4.4 凭证的设置
 
 在push时有时会存在要求输入账号和密码，为了解决这个问题，需要存储凭证。
 
@@ -225,5 +225,60 @@ git config --global alias.ci commit    #将commit的别名设置为ci
 
 ```shell
 git config --global credential.helper wincred
+```
+
+## 5、git协议
+
+### 5.1 本地协议  
+
+1、克隆本地仓库
+
+```shell
+git clone /d/github/test.git
+```
+
+**注：**不建议添加file，如：git clone file:///c/github/test.git
+
+2、添加本地远程仓库的链接
+
+```shell
+git remote add origin /d/github/test.git
+```
+
+3、报错：
+
+```shell
+![remote rejected] master -> master(branch is currently checked out)
+```
+
+解决方法：
+
+```shell
+方法1：
+修改~/.gitconfig文件，添加如下字段：
+[receive]
+	denyCurrentBranch = ignore
+方法2：
+	git config --global receive.denyCurrentBranch ignore #待验证
+```
+
+4、将仓库更新到指版本
+
+- 查看所有版本号：
+
+```shell
+git reflog
+```
+
+- 更新到指定版本：
+
+```shell
+git reset --hard 版本号
+```
+
+5、下载指定版本的仓库
+
+```shell
+git checkout 版本号
 ```
 
