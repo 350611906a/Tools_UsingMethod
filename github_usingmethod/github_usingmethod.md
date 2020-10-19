@@ -282,3 +282,92 @@ git reset --hard 版本号
 git checkout 版本号
 ```
 
+
+
+### 5.2 git协议 (一般用在只读)
+
+1、克隆远程仓库
+
+```shell
+git clone git://server_ip/test.git
+```
+
+2、添加远程仓库
+
+```shell
+git remote add origin git:://server_ip/test.git
+```
+
+3、优缺点
+
+- 优点：4个协议中速度最快
+- 缺点：缺乏授权协议，9418端口防火墙一般不开
+
+
+
+### 5.3 HTTP协议
+
+1、克隆远程仓库：
+
+```shell
+git clone https://github.com/350611906a/test.git
+```
+
+2、添加远程仓库
+
+```shell
+git remote add origin https://github.com/350611906a/test.git
+```
+
+3、优缺点：
+
+- 优点：简单上手、走80端口(为防火墙开放的端口)
+- 缺点：公司内部部署较为复杂、效率低下
+
+
+
+### 5.4 SSH协议  
+
+1、克隆远程仓库
+
+```shell
+git clone ssh://git@github.com/350611906a/test.git
+git clone git@github.com:350611906a/git.git   #为缩写形式，更常用
+```
+
+2、添加远程仓库链接
+
+```shell
+git remote add origin git@github.com:350611906a/test.git
+```
+
+3、优缺点：
+
+- 优点：安全级别与https相当、本地部署容易、压缩最大，传输速度快
+- 缺点：可能有些企业不能使用
+
+4、配置SSH的方法：
+
+（1）生成RSA密钥对
+
+```shell
+ssh-Keygen -t rsa -C "beaconwwj@163.com"
+# 生成对应公钥和私钥，会提示保存位置。一般在 ~/.ssh/ 路径下。
+```
+
+（2）在github网站上添加公钥
+
+```shell
+拷贝公钥id_rsa.pub文件中内容 --> github主页 --> setting --> SSH and GPGkeys --> New SSH Key --> 命名为win0_pc --> 粘贴拷贝的公钥 --> 保存
+```
+
+（3）优先使用SSH协议
+
+​	查看方法：**git remote -v**
+
+（4）完成以上部署，之后电脑重装系统或者换了电脑，需重新部署
+
+​		  为了不重复动作，可以将~/.ssh/下的文件备份一份到百度网盘上，重装系统后，直接拷贝下来即可。
+
+
+
