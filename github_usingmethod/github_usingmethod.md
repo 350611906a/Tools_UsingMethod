@@ -371,3 +371,29 @@ ssh-Keygen -t rsa -C "beaconwwj@163.com"
 
 
 
+## 6、git基本命令  
+
+### 6.1 几个git的新命令  
+
+- git blame
+
+  ```shell
+  1、逐行查看修改历史及修改人：
+  	git blame <file name>
+  2、查看从第100行到第110行的修改历史及修改人：
+  	git blame -L 100,110 <file name>
+  ```
+
+- git clean
+
+  ```shell
+  1、选中打算清除的文件：
+  	git clean -n
+  2、删除选中的文件：
+  	git clean -f
+  3、选中打算清处理的文件，连同.gitignore中的文件一并删除
+  	git clean -x
+  注意：都是先选中，在删除。即1->2，或者3->2
+  ```
+
+  
