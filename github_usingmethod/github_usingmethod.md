@@ -396,4 +396,188 @@ ssh-Keygen -t rsa -C "beaconwwj@163.com"
   注意：都是先选中，在删除。即1->2，或者3->2
   ```
 
-  
+- git  rm 和 rm
+
+  ```shell
+  1、直接rm文件
+  	git add .
+  	git commit -m "message"
+  2、git rm 文件
+  	git commit -m "message"
+  ```
+
+### 6.2 git add的使用  
+
+- 修改后的文件的提交
+
+  ```shell
+  git ci -am "update file"
+  ```
+
+- 添加文件夹
+
+  - mkdir dir   --> 添加文件夹，此时，git st时试没有变化的
+  -  进入dir，然后，touch文件a.txt
+  - 回到父路径，git st可以看到需要的修改
+  - git add .
+  - git cmmit
+
+- git add .
+
+  ​	表示将当前路径下的所有文件都提交，也可以指定文件：git add <file name>
+
+- git add -p <file name>
+
+  对代码进行分步提交。
+
+  - y --> yes
+  - n-->no
+  - s-->split分割
+
+
+
+### 6.3 git commit深入讲解 
+
+1、对于已经提交到暂存区的文件进行修改并提交
+
+- 方法1：
+
+  ```shell
+  git add .
+  git commit -am "message"
+  ```
+
+- 方法2：
+
+  ```shell
+  git commit -a -m "message"
+  ```
+
+- 方法3：
+
+  ```shell
+  git commit -am "message"
+  ```
+
+2、message的书写格式
+
+```shell
+<type>(<scope>): <subject>
+其中，
+type为标签：
+	feat: 新功能
+	fix：修补bug
+	docs: 文档
+	style: 格式
+	test：增加测试
+	chore：构建过程或者辅助工具的变化
+	
+subject为修改内容，请用英文。
+scope为选填。
+```
+
+3、查看详细修改
+
+```shell
+git show HEAD
+```
+
+
+
+### 6.4 git信息查看  
+
+1、简短查看信息：
+
+```shell
+git status -sb
+其中sb：short and branch
+```
+
+2、查看某个提交信息：git show
+
+```shell
+git show HEAD       //最新提交信息
+git show HEAD^      //第二新信息
+git show 版本哈希值   //查看对应版本的信息
+git show HEAD~2     //前两个提交的详细信息
+```
+
+3、查看日志：git log
+
+```shell
+git log <file name>           //查看某个文件的日志
+git log --grep <message>      //过滤查看日志
+git log -n                    //表示查看多少条日志
+```
+
+
+
+### 6.5 git diff功能   
+
+- git diff
+
+  ​		表示工作区与暂存区的差异
+
+- git diff --cached
+
+  ​		表示暂存区与版本的差异
+
+- git diff HEAD
+
+  ​     	表示工作区与版本的差异
+
+- git diff 哈希1 哈希2
+
+​                 表示哈希1和哈希2两个版本的差异
+
+- git diff  TT   
+
+  ​		  表示工作区与大有TT标签的版本差异
+
+  ​		  其中，git tag TT 哈希值/HEAD~4      //表示给哈希值版本/第4个版本打上TT的标签
+
+- git diff --cached TT
+
+​                 表示暂存区与TT版本的差异
+
+
+
+### 6.5 git的回撤操作  
+
+1、git reset HEAD
+
+​			回撤暂存区内容到工作区（是对add的回撤）
+
+2、git reset HEAD^ --soft
+
+​			回撤提交到暂存区（将版本回撤到暂存区）
+
+3、git reset HEAD --hard
+
+​			回撤提交，放弃变更（直接放弃版本的提交，相应文件也会被删除）
+
+4、git push -f
+
+​			回撤远程仓库（先reset，再git push -f）
+
+**注意：**回撤一定要在推送到远程仓库之前，推送后的回撤影响很大，影响别人的版本。
+
+5、修改上一个版本，并将上一个提交的版本与本版本一并作为一个新版本提交，注：此时上一版本的日志没有了：
+
+```shell
+	git add .
+	git commit --amend -m "message"
+```
+
+6、git rebase -i HEAD~3
+
+​			基变操作，改写历史提交
+
+```shell
+eg:	提交5次，有5个日志，5次提交。将5次提交修改成2次，并将对应message也修改为2个。
+```
+
+
+
+
+
