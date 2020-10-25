@@ -371,7 +371,7 @@ ssh-Keygen -t rsa -C "beaconwwj@163.com"
 
 
 
-## 6、git基本命令  
+## 6、git进阶的命令  
 
 ### 6.1 几个git的新命令  
 
@@ -578,6 +578,42 @@ eg:	提交5次，有5个日志，5次提交。将5次提交修改成2次，并�
 ```
 
 
+
+### 6.6 标签操作   
+
+1、git tag foo
+
+​		在当前提交上，打上标签foo。
+
+2、git tag foo -m "message"
+
+​		在当前提交上打标签foo，并设置对应的标签message。
+
+3、git tag foo HEAD~4
+
+​		在当前提交之前的第4个版本上，打标签foo。
+
+4、git tag
+
+​		列出所有标签。
+
+5、git tag -d TT
+
+​		删除TT标签。
+
+6、git push origin --tags
+
+​		将多个标签一次性全部推送到远程仓库。
+
+7、git push origin v0.1
+
+​		把某个标签v0.1推送到远程仓库
+
+8、git push origin :refs/tags/v0.1
+
+​		将本地删除的标签推送到远程仓库
+
+ 
 
 
 
