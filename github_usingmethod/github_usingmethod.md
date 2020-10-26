@@ -615,5 +615,180 @@ eg:	提交5次，有5个日志，5次提交。将5次提交修改成2次，并�
 
  
 
+### 6.7 分支操作  
 
+1、分支的作用：
 
+​		为了配合多人并行协同开发。
+
+2、长期分支和临时分支：
+
+​	（1）长期分支：develop分支和master分支
+
+​	（2）临时分支。
+
+3、开分支的实例子
+
+- git branch iss53
+
+  ​	开个issues3分支
+
+- git hi -10
+
+  ​	可以看到HEAD->master，iss53两个分支。
+
+- git checkout issues3
+
+  ​	从master分子切换到iss53分支。
+
+- touch b -> git  ad -> git ci -m "C3" -> gti hi -10 查看结果
+
+- git checkout master -> git branch hotfix -> git branch -> git co hotfix -> touch c -> git ad -> git ci -m "C4" -> git hi -10
+
+  ​	切换回master分之后，在创建一个分支hotfix，查看分支个数；在切换到hotfix分支上，创建文件c，并上传，最后查看历史。
+
+- 要将hotfit分支合并到master上
+
+  git checkout master
+
+  git merge hotfix
+
+- git branch -d hotfix
+
+  ​	将hotfix分支删除。
+
+- 进入iss53分支进行编辑
+
+  ​	echo 111 >> b
+
+  ​	git ci -am "C5"
+
+  ​	git hi -10
+
+- 将iss53全部合并到master分支上
+
+  ​	git chechout master
+
+  ​	git merge iss53 --> 提示冲突，直接q退出即可。
+
+  ​	git hi -10
+
+4、冲突的解决
+
+- 产生冲突的原因：
+
+  - 在不同的分支上，修改同一个文件
+
+  - 不同的人修改了同一个文件
+
+  - 不同的仓库修改了同一个文件
+
+    冲突只在合并分支时才会发生。
+
+- 解决方法：
+
+  - 冲突发生并不可怕，冲突的代码不会丢失
+  - 解决冲突，重新提交，commit时不要给message
+  - 冲突信息的格式。
+
+5、冲突后状态为（master|MERGING）
+
+​	修改后：
+
+​					git add a
+
+​					git commit
+
+​					:q
+
+​					完成。
+
+6、分支命令
+
+- git branch foo
+
+  ​	创建分支foo
+
+- git checkout foo
+
+  ​	切换到分支foo
+
+- git checkout -b foo 
+
+  ​	创建分支并同时切换到foo分支上，一步到位。
+
+- git branch -m oldname newname
+
+  ​	提示名字有重名
+
+  git branch -M oldname newname
+
+  ​	不提示名字有重名
+
+- git branch -d foo
+
+  ​	提示删除foo分支
+
+  git branch -D foo
+
+  ​	直接删除foo分支
+
+- git branch -r 
+
+  ​	列出远程分支
+
+- git branch -r --merged
+
+  ​	列出远程已合并的分支
+
+- git checkout -t origin/foo
+
+  ​	取出远程foo分支
+
+- git push origin <remote branch>
+
+  git fetch -p
+
+  ​	删除分支
+
+- git merger <branch name>
+
+  ​	合并分支
+
+- git merge --no-ff
+
+  ​	合并分支，拒绝fast forward，产生合并commit
+
+- git stash操作
+
+  - 保存进度
+
+    git stash   //修改了版本，但是不想提交，却又要切换到别的分支上，使用该命令将修改的暂存
+
+  - 弹出进度
+
+    git stash pop  //将暂存的内容弹出来
+
+  - 查看stash列表
+
+    git stash list
+
+  - 删除stash列表
+
+    git stash clear
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
